@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Play</title>
+    <script src="/content/static/js/joker.js"></script>
+    <script src="/content/static/js/timer.js"></script>
+</head>
+<span>{{ category }}</span>
+<p>{{ question }}</p>
+<form method="post" action="/play/answer">
+    <div id="answers">
+        {% for ans in answers -%}
+            <button type="submit" name="answer" value="{{ ans }}">
+                {{ ans }}
+            </button>
+            {%- endfor %}
+    </div>
+</form>
+<span>Punkte: {{ points }}</span>
+{% if joker -%}
+<button id="joker" onclick="window.useJoker()">Joker einsetzen</button>
+{%- endif %}
+<p>Vergangene Zeit: <span id="timer"></span></p>
+<script>
+    window.startTimer({{ elapsed_secs }})
+</script>
+<p>Diese Frage wird zu {{ ratio }}% richtig beantwortet.</p>
+<a href="/play/end">Beenden</a>
+</body>
+</html>

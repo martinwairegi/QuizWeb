@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+{% import "macros/table_macros" as table_macros %}
+<head>
+    <meta charset="UTF-8">
+    <title>Ende</title>
+</head>
+<body>
+<h1>Du bist auf Platz #{{ placement }} gelandet.</h1>
+<h1>Die Top-3:</h1>
+<table>
+    {{ table_macros::table_headers() }}
+    {{ table_macros::score_rows(scores = top_three) }}
+</table>
+<h1>Deine Nachbarn:</h1>
+<table>
+    {{ table_macros::table_headers() }}
+    {{ table_macros::score_rows(scores = higher) }}
+    {{ table_macros::score_rows(scores = [user_score]) }}
+    {{ table_macros::score_rows(scores = lower) }}
+</table>
+</body>
+</html>
